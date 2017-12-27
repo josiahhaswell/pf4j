@@ -132,15 +132,15 @@ public class PluginWrapper {
 		return "PluginWrapper [descriptor=" + descriptor + ", pluginPath=" + pluginPath + "]";
 	}
 
-	void setPluginState(PluginState pluginState) {
+	public void setPluginState(PluginState pluginState) {
 		this.pluginState = pluginState;
 	}
 
-	void setRuntimeMode(RuntimeMode runtimeMode) {
+	public void setRuntimeMode(RuntimeMode runtimeMode) {
 		this.runtimeMode = runtimeMode;
 	}
 
-    void setPluginFactory(PluginFactory pluginFactory) {
+    public void setPluginFactory(PluginFactory pluginFactory) {
         this.pluginFactory = pluginFactory;
     }
 

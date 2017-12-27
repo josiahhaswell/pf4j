@@ -266,6 +266,7 @@ public abstract class AbstractPluginManager implements PluginManager {
             }
 
             PluginWrapper pluginWrapper = getPlugin(pluginId);
+            beforeUnload(pluginWrapper);
             log.info("Unload plugin '{}'", getPluginLabel(pluginWrapper.getDescriptor()));
 
             // remove the plugin
@@ -294,6 +295,7 @@ public abstract class AbstractPluginManager implements PluginManager {
 
         return false;
     }
+
 
     @Override
     public boolean deletePlugin(String pluginId) {
@@ -392,6 +394,7 @@ public abstract class AbstractPluginManager implements PluginManager {
             if (PluginState.STARTED == pluginState) {
                 try {
                     log.info("Stop plugin '{}'", getPluginLabel(pluginWrapper.getDescriptor()));
+                    beforeStop(pluginWrapper);
                     pluginWrapper.getPlugin().stop();
                     pluginWrapper.setPluginState(PluginState.STOPPED);
                     itr.remove();
@@ -416,6 +419,7 @@ public abstract class AbstractPluginManager implements PluginManager {
         checkPluginId(pluginId);
 
         PluginWrapper pluginWrapper = getPlugin(pluginId);
+        beforeStop(pluginWrapper);
         PluginDescriptor pluginDescriptor = pluginWrapper.getDescriptor();
         PluginState pluginState = pluginWrapper.getPluginState();
         if (PluginState.STOPPED == pluginState) {
@@ -451,6 +455,7 @@ public abstract class AbstractPluginManager implements PluginManager {
 
         return pluginWrapper.getPluginState();
     }
+
 
     private void checkPluginId(String pluginId) {
         if (!plugins.containsKey(pluginId)) {
@@ -897,6 +902,15 @@ public abstract class AbstractPluginManager implements PluginManager {
      */
     protected String getPluginLabel(PluginDescriptor pluginDescriptor) {
         return pluginDescriptor.getPluginId() + "@" + pluginDescriptor.getVersion();
+    }
+
+    protected void beforeStop(PluginWrapper pluginWrapper) {
+
+    }
+
+
+    protected void beforeUnload(PluginWrapper pluginWrapper) {
+
     }
 
 }
