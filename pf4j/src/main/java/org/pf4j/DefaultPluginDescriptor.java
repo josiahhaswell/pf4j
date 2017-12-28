@@ -15,6 +15,8 @@
  */
 package org.pf4j;
 
+import java.net.URI;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +37,8 @@ public class DefaultPluginDescriptor implements PluginDescriptor {
     private String provider;
     private List<PluginDependency> dependencies;
     private String license;
+
+    private URI location;
 
     public DefaultPluginDescriptor() {
         dependencies = new ArrayList<>();
@@ -62,6 +66,16 @@ public class DefaultPluginDescriptor implements PluginDescriptor {
 
     public void addDependency(PluginDependency dependency) {
         this.dependencies.add(dependency);
+    }
+
+
+    @Override
+    public URI getLocation() {
+        return location;
+    }
+
+    protected void setLocation(URI location) {
+        this.location = location;
     }
 
     /**

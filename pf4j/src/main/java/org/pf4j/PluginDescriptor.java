@@ -15,6 +15,7 @@
  */
 package org.pf4j;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -24,6 +25,8 @@ import java.util.List;
  * @author Decebal Suiu
  */
 public interface PluginDescriptor {
+
+    URI getLocation();
 
     String getPluginId();
 
